@@ -12,10 +12,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   optionImage: {
-    width: "48%",
-    height: "48%",
+    width: "70%",
+    height: "70%",
   },
-  optionText: {},
+  selectedContainer: {
+    backgroundColor: "#DDF4FE",
+    borderColor: "#81D5FE",
+  },
+  selectedText: {
+    color: "#40BEF7",
+    fontWeight: "bold",
+  },
+  optionText: {
+    fontWeight: "bold",
+  },
 });
 
 export default styles;
