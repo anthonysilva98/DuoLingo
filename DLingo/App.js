@@ -5,39 +5,34 @@ import ImageOption from "./src/Components/ImageOptions/ImageOption";
 import questions from "./data/imageMulatipleChoiceQuestions";
 import { useState, useEffect } from "react";
 import Button from "./src/Components/Button";
+import ImageMultipleChoiceQuestion from "./src/Components/imageMultipleChoiceQuestion/imageMultipleChoiceQuestion";
 const App = () => {
-  const [selected, setSelected] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(
     questions[currentQuestionIndex]
   );
   useEffect(() => {
-    setCurrentQuestion(questions[currentQuestionIndex]);
-  }, [currentQuestionIndex]);
-  const onButtonPress = () => {
-    if (selected.correct) {
-      Alert.alert("Correct!");
-      //move to next question
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (currentQuestionIndex >= questions.length) {
+      Alert.alert("Congratulations, you have completed this section.");
+      setCurrentQuestionIndex(0);
     } else {
-      Alert.alert("Please Choose again");
+      setCurrentQuestion(questions[currentQuestionIndex]);
     }
+  }, [currentQuestionIndex]);
+
+  const onCorrect = () => {
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+  const onWrong = () => {
+    Alert.alert("Please Choose Again!");
   };
   return (
     <View style={styles.root}>
-      <Text style={styles.title}>{currentQuestion.question}</Text>
-      <View style={styles.optionsContainer}>
-        {currentQuestion.options.map((option) => (
-          <ImageOption
-            key={option.id}
-            image={option.image}
-            text={option.text}
-            isSelected={selected?.id == option.id}
-            onPress={() => setSelected(option)}
-          />
-        ))}
-      </View>
-      <Button text="Check" onPress={onButtonPress} disabled={!selected} />
+      <ImageMultipleChoiceQuestion
+        question={currentQuestion}
+        onCorrect={onCorrect}
+        onWrong={onWrong}
+      ></ImageMultipleChoiceQuestion>
     </View>
   );
 };
