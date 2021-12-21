@@ -52,7 +52,7 @@ const OpenEndedQuestion = ({ question, onCorrect, onWrong }) => {
             placeholder="Please Translate the sentence in english"
             style={styles.textInput}
           ></TextInput>
-          <Button text="Check" onPress={onButtonPress} disabled={false} />
+          <Button text="Check" onPress={onButtonPress} disabled={!input} />
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </>
