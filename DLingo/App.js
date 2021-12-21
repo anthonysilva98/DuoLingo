@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Button from "./src/Components/Button";
 import ImageMultipleChoiceQuestion from "./src/Components/imageMultipleChoiceQuestion/imageMultipleChoiceQuestion";
 import OpenEndedQuesion from "./src/Components/OpenEndedQuesion";
-import questions from "./data/openEndedQuestions";
+import questions from "./data/allQuestions";
 const App = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(
@@ -30,17 +30,22 @@ const App = () => {
   };
   return (
     <View style={styles.root}>
-      {/* <ImageMultipleChoiceQuestion
-        question={currentQuestion}
-        onCorrect={onCorrect}
-        onWrong={onWrong}
-      ></ImageMultipleChoiceQuestion> */}
+      {/* conditional Rendering */}
+      {currentQuestion.type == "IMAGE_MULTIPLE_CHOICE" ? (
+        <ImageMultipleChoiceQuestion
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        ></ImageMultipleChoiceQuestion>
+      ) : null}
 
-      <OpenEndedQuesion
-        question={currentQuestion}
-        onCorrect={onCorrect}
-        onWrong={onWrong}
-      />
+      {currentQuestion.type === "OPEN_ENDED" ? (
+        <OpenEndedQuesion
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      ) : null}
     </View>
   );
 };
