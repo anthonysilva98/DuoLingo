@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    backgroundColor: "red",
     alignSelf: "flex-start",
   },
   row: {
@@ -36,6 +35,10 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     flex: 1,
+  },
+  fullContainer: {
+    width: "100%",
+    height: "100%",
   },
 });
 export default styles;
